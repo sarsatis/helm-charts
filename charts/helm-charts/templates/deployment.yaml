@@ -7,22 +7,22 @@ metadata:
 #    "meta.helm.sh/release-name": "priyankalearnings"
   creationTimestamp: null
   labels:
-    app: priyankalearning
-  name: priyankalearning
+    app: "{{ .Values.appName }}"
+  name: "{{ .Values.appName }}"
 spec:
-  replicas: 1
+  replicas: "{{ .Values.replicaCount }}"
   selector:
     matchLabels:
-      app: priyankalearning
+      app: "{{ .Values.appName }}"
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: priyankalearning
+        app: "{{ .Values.appName }}"
     spec:
       containers:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          name: priyankalearnings
+          name: "{{ .Values.appName }}"
           resources: {}
 status: {}

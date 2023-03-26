@@ -7,15 +7,15 @@ metadata:
 #    "meta.helm.sh/release-name": "priyankalearnings"
   creationTimestamp: null
   labels:
-    app: priyankalearning
-  name: priyankalearnings
+    app: "{{ .Values.appName }}"
+  name: "{{ .Values.appName }}"
 spec:
   ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
-    app: priyankalearning
+    app: "{{ .Values.appName }}"
   type: ClusterIP
 status:
   loadBalancer: {}
