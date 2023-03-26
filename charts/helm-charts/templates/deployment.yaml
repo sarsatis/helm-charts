@@ -1,11 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-#  annotations:
-#    "app.kubernetes.io/managed-by" : "Helm"
-#    "meta.helm.sh/release-namespace": "jenkins"
-#    "meta.helm.sh/release-name": "priyankalearnings"
-  creationTimestamp: null
   labels:
     app: "{{ .Values.appName }}"
   name: "{{ .Values.appName }}"
