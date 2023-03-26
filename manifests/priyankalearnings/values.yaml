@@ -4,10 +4,10 @@
 
 replicaCount: 1
 
-appName: solar-system
+appName: priyankalearnings
 
 image:
-  repository: sarthaksatish/solar-system
+  repository: sarthaksatish/priyankalearnings
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: 30

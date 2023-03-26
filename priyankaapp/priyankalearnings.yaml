@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: priyankapractice
+  name: priyankalearnings
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,10 @@ spec:
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
     targetRevision: HEAD
-    path: charts/priyankalearnings
+    path: charts/helm-charts
+    helm:
+      valueFiles:
+        - "/manifests/priyankalearnings/values.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
