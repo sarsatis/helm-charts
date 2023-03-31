@@ -16,7 +16,7 @@ spec:
     #     url: https://api.cluster3.chx.osecloud.com:6443
   template:
     metadata:
-      name: 'solar-system-{{env}'
+      name: 'solar-system-{{env}}'
     spec:
       project: default
       syncPolicy:
