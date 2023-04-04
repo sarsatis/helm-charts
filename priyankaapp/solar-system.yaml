@@ -28,4 +28,4 @@ spec:
             - "/manifests/solar-system/values.yaml"
       destination:
         server: '{{url}}'
-        namespace: argocds
+        namespace: argocd
