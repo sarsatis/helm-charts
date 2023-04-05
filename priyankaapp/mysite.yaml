@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: priyanktotalaapps-sit
+  name: mysite
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: listgenerator
-    path: priyankaapp/
+    repoURL: https://github.com/gtbanfield/Helm.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      -  ../manifests/mysite/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true  
     automated:
       prune: true
       selfHeal: true

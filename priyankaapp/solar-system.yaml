@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: solar-system
-  namespace: argocd
+  namespace: default
 spec:
   generators:
   - list:
@@ -14,18 +14,18 @@ spec:
     metadata:
       name: 'solar-system-{{env}}'
     spec:
-      project: '{{env}}'
+      project: default
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
       source:
         repoURL: https://github.com/sarsatis/helm-charts.git
-        targetRevision: listgenerator
+        targetRevision: clustergenerator
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/solar-system/values.yaml"
+            - "/manifests/solar-system/values-{{env}}.yaml"
       destination:
         server: '{{url}}'
-        namespace: argocd
+        namespace: default
