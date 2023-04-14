@@ -1,53 +1,52 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: priyankapractice
-#   namespace: argocd
-# spec:
-#   generators:
-#     # merge 'parent' generator
-#     - merge:
-#         mergeKeys:
-#           - server
-#         generators:
-#           - clusters:
-#               values:
-#                 kafka: 'true'
-#                 redis: 'false'
-#           # For clusters with a specific label, enable Kafka.
-#           - clusters:
-#               selector:
-#                 matchLabels:
-#                   use-kafka: 'false'
-#               values:
-#                 kafka: 'false'
-#           # For a specific cluster, enable Redis.
-#           - list:
-#               elements: 
-#                 - server: https://2.4.6.8
-#                   values.redis: 'true'
-#   generators:
-#   - list:
-#       elements:
-#       - cluster: cluster1
-#         url: https://kubernetes.default.svc
-#         env: dev
-#   template:
-#     metadata:
-#       name: 'priyankapractice-{{env}}'
-#     spec:
-#       project: default
-#       syncPolicy:
-#         automated:
-#           prune: true
-#           selfHeal: true
-#       source:
-#         repoURL: https://github.com/sarsatis/helm-charts.git
-#         targetRevision: clustergenerator
-#         path: charts/helm-charts
-#         helm:
-#           valueFiles:
-#             - "/manifests/priyankapractice/values-{{env}}.yaml"
-#       destination:
-#         server: '{{url}}'
-#         namespace: argocd
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: priyankapractice
+  namespace: argocd
+spec:
+  generators:
+    - merge:
+        mergeKeys:
+          - cluster
+        generators:
+          - clusters:
+              values:
+                env: dev
+                url: https://kubernetes.default.svc
+                targetRevision: clustergenerator
+                project: default
+          - clusters:
+              selector:
+                matchLabels:
+                  env: dev
+          - list:
+              elements: 
+                - cluster: cluster1
+                  values.env: dev
+                  values.url: https://kubernetes.default.svc
+                  values.targetRevision: clustergenerator
+                  values.project: default
+                - cluster: cluster2
+                  values.env: sit
+                  values.url: https://kubernetes.default.svc
+                  values.targetRevision: clustergenerator
+                  values.project: default
+  template:
+    metadata:
+      name: 'priyankapractice-{{env}}'
+    spec:
+      project: {{values.project}}
+      source:
+        repoURL: https://github.com/sarsatis/helm-charts.git
+        targetRevision: {{values.targetRevision}}
+        path: charts/helm-charts
+        helm:
+          valueFiles:
+            - "/manifests/priyankapractice/values-{{env}}.yaml"
+      destination:
+        server: '{{values.url}}'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
