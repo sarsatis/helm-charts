@@ -33,7 +33,7 @@ spec:
                   values.project: default
   template:
     metadata:
-      name: priyankapractice-{{env}}
+      name: priyankapractice{{env}}
     spec:
       project: '{{values.project}}'
       syncPolicy:
