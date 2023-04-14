@@ -14,7 +14,6 @@ spec:
               env: dev
           values:
             env: dev
-            url: https://kubernetes.default.svc
             targetRevision: clustergenerator
             project: default
       - list:
@@ -38,6 +37,6 @@ spec:
           valueFiles:
             - "/manifests/{{appName}}/values-{{values.env}}.yaml"
       destination:
-        server: '{{values.url}}'
+        server: "{{server}}"
         namespace: argocd
 
