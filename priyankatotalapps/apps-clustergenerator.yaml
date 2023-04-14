@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: clustergenerator
+    targetRevision: main
     path: priyankaapp
   destination:
     server: https://kubernetes.default.svc
