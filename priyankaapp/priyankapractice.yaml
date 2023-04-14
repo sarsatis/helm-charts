@@ -16,6 +16,13 @@ spec:
             env: dev
             targetRevision:  main
             project: default
+      - list:
+          elements:
+            - appName: priyankapractice
+            - appName: solar-system
+            - appName: priyankalearnings
+  - matrix:
+      generators:
       - clusters:
           selector:
             matchLabels:
