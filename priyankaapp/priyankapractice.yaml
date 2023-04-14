@@ -5,35 +5,25 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - merge:
-        mergeKeys:
-          - cluster
+    # Generator for apps that should deploy to all cluster.
+    - matrix:
         generators:
           - clusters:
+              selector:
+                matchLabels:
+                  env: dev
               values:
                 env: dev
                 url: https://kubernetes.default.svc
                 targetRevision: clustergenerator
                 project: default
-          - clusters:
-              selector:
-                matchLabels:
-                  env: dev
           - list:
-              elements: 
-                - cluster: cluster1
-                  values.env: dev
-                  values.url: https://kubernetes.default.svc
-                  values.targetRevision: clustergenerator
-                  values.project: default
-                - cluster: cluster2
-                  values.env: sit
-                  values.url: https://kubernetes.default.svc
-                  values.targetRevision: clustergenerator
-                  values.project: default
+              elements:
+                - appName: priyankapractice
+                - appName: solar-system
   template:
     metadata:
-      name: priyankapractice-{{values.env}}
+      name: {{appName}}-{{values.env}}
     spec:
       project: '{{values.project}}'
       syncPolicy:
@@ -46,7 +36,7 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/priyankapractice/values-{{values.env}}.yaml"
+            - "/manifests/{{appName}}/values-{{values.env}}.yaml"
       destination:
         server: '{{values.url}}'
         namespace: argocd
