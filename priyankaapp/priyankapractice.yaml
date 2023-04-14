@@ -16,6 +16,14 @@ spec:
             env: dev
             targetRevision:  main
             project: default
+      - clusters:
+          selector:
+            matchLabels:
+              env: sit
+          values:
+            env: sit
+            targetRevision:  main
+            project: default
       - list:
           elements:
             - appName: priyankapractice
