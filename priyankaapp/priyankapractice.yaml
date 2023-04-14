@@ -23,7 +23,7 @@ spec:
             - appName: solar-system
   template:
     metadata:
-      name: {{appName}}-{{values.env}}
+      name: "{{appName}}-{{values.env}}"
     spec:
       project: '{{values.project}}'
       syncPolicy:
