@@ -6,21 +6,21 @@ metadata:
 spec:
   generators:
     # Generator for apps that should deploy to all cluster.
-    - matrix:
-        generators:
-          - clusters:
-              selector:
-                matchLabels:
-                  env: dev
-              values:
-                env: dev
-                url: https://kubernetes.default.svc
-                targetRevision: clustergenerator
-                project: default
-          - list:
-              elements:
-                - appName: priyankapractice
-                - appName: solar-system
+  - matrix:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              env: dev
+          values:
+            env: dev
+            url: https://kubernetes.default.svc
+            targetRevision: clustergenerator
+            project: default
+      - list:
+          elements:
+            - appName: priyankapractice
+            - appName: solar-system
   template:
     metadata:
       name: {{appName}}-{{values.env}}
