@@ -5,20 +5,20 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    # - merge:
-    #     mergeKeys:
-    #       - cluster
-    #     generators:
-    #       - clusters:
-    #           values:
-    #             env: dev
-    #             url: https://kubernetes.default.svc
-    #             targetRevision: clustergenerator
-    #             project: default
-    #       - clusters:
-    #           selector:
-    #             matchLabels:
-    #               env: dev
+    - merge:
+        mergeKeys:
+          - cluster
+        generators:
+          - clusters:
+              values:
+                env: dev
+                url: https://kubernetes.default.svc
+                targetRevision: clustergenerator
+                project: default
+          - clusters:
+              selector:
+                matchLabels:
+                  env: dev
           - list:
               elements: 
                 - cluster: cluster1
