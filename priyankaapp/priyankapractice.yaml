@@ -28,6 +28,8 @@ spec:
                 # - path: /manifests/[priyankapractice|priyankalearnings]
                 #   exclude: true
                 - path: manifests/*
+                - path: manifests/priyankapractice
+                  exclude: true
 
     - matrix:
         generators:
