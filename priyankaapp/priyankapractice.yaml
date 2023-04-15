@@ -21,7 +21,7 @@ spec:
           repoURL: https://github.com/sarsatis/helm-charts.git
           revision: main
           files:
-          - path: /priyankaapp/list-elementsYaml-example.yaml
+          - path: list-elementsYaml-example.yaml
       - list:
           elements: []
           sYaml: "{{ .key.components | toJson }}"
