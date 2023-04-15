@@ -6,55 +6,58 @@ metadata:
 spec:
   generators:
     # Generator for apps that should deploy to all cluster.
-    - matrix:
-        generators:
-          # - clusters:
-          #     selector:
-          #       matchLabels:
-          #         env: dev
-          #     values:
-          #       env: dev
-          #       targetRevision:  main
-          #       project: default
-          #       elementsPath: priyankaapp/list-elementsYaml-example.yaml
-          - git:
-              repoURL: https://github.com/sarsatis/helm-charts.git
-              revision: main
-              files:
-                - path: appslist.yaml
-          - list:
-              elements: ["{{key.components | toYaml}}"]
-    - matrix:
-        generators:
-          - clusters:
-              selector:
-                matchLabels:
-                  env: sit
-              values:
-                env: sit
-                targetRevision: main
-                project: default
-          - list:
-              elements:
-                - appName: priyankapractice
-                - appName: solar-system
-                - appName: priyankalearnings
+  - matrix:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              env: dev
+          values:
+            env: dev
+            targetRevision:  main
+            project: default
+      # - list:
+      #     elements:
+      #       - appName: priyankapractice
+      #       - appName: solar-system
+      #       - appName: priyankalearnings
+      - git:
+          repoURL: https://github.com/sarsatis/helm-charts.git
+          revision: HEAD
+          directories:
+          - path: manifests/*
+  - matrix:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              env: sit
+          values:
+            env: sit
+            targetRevision:  main
+            project: default
+      - list:
+          elements:
+            - appName: priyankapractice
+            - appName: solar-system
+            - appName: priyankalearnings
   template:
     metadata:
-      name: "{{appName}}-{{values.env}}"
+      name: "{{path.basename}}-{{values.env}}"
     spec:
-      project: "{{values.project}}"
+      project: '{{values.project}}'
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
       source:
         repoURL: https://github.com/sarsatis/helm-charts.git
-        targetRevision: "{{values.targetRevision}}"
+        targetRevision: '{{values.targetRevision}}'
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/{{appName}}/values-{{values.env}}.yaml"
+            - "/manifests/{{path.basename}}/values-{{values.env}}.yaml"
       destination:
         server: "{{server}}"
         namespace: argocd
+
