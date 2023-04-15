@@ -17,6 +17,7 @@ spec:
                 env: dev
                 targetRevision: main
                 project: default
+                server: https://devops-aks-tools-dns-m7p98jvr.hcp.eastus.azmk8s.io:443
           # - list:
           #     elements:
           #       - appName: priyankapractice
@@ -61,6 +62,6 @@ spec:
           valueFiles:
             - "/manifests/{{ . }}/values-{{values.env}}.yaml"
       destination:
-        server: "{{server}}"
+        server: "{{values.server}}"
         namespace: argocd
 {{- end }}
