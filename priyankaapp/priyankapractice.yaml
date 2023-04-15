@@ -28,7 +28,7 @@ spec:
                 # - path: /manifests/[priyankapractice|priyankalearnings]
                 #   exclude: true
                 - path: manifests/*
-                - path: manifests/priyankapractice
+                - path: manifests/[priyankapractice|solar-system]
                   exclude: true
 
     - matrix:
