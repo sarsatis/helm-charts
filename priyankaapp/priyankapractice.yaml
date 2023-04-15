@@ -23,7 +23,7 @@ spec:
           files:
           - path: appslist.yaml
       - list:
-          elements: "{{key.components}}"
+          elements: ["{{key.components}}"]
   - matrix:
       generators:
       - clusters:
