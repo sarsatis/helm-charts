@@ -8,18 +8,23 @@ spec:
     # Generator for apps that should deploy to all cluster.
   - matrix:
       generators:
-      - clusters:
-          selector:
-            matchLabels:
-              env: dev
-          values:
-            env: dev
-            targetRevision:  main
-            project: default
-            elementsPath: priyankaapp/list-elementsYaml-example.yaml
+      # - clusters:
+      #     selector:
+      #       matchLabels:
+      #         env: dev
+      #     values:
+      #       env: dev
+      #       targetRevision:  main
+      #       project: default
+      #       elementsPath: priyankaapp/list-elementsYaml-example.yaml
+      - git:
+          repoURL: https://github.com/sarsatis/helm-charts.git
+          revision: main
+          files:
+          - path: /priyankaapp/list-elementsYaml-example.yaml
       - list:
           elements: []
-          elementsYaml: "{{ values.elementsPath | toYaml }}"
+          sYaml: "{{ .key.components | toJson }}"
   - matrix:
       generators:
       - clusters:
