@@ -16,11 +16,10 @@ spec:
             env: dev
             targetRevision:  main
             project: default
+            elementsPath: priyankaapp/list-elementsYaml-example.yaml
       - list:
           elements:
-            - appName: priyankapractice
-            - appName: solar-system
-            - appName: priyankalearnings
+            '{{values.elementsPath}}'
   - matrix:
       generators:
       - clusters:
