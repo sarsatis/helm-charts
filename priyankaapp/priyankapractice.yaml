@@ -21,10 +21,9 @@ spec:
           repoURL: https://github.com/sarsatis/helm-charts.git
           revision: main
           files:
-          - path: list-elementsYaml-example.yaml
+          - path: appslist.yaml
       - list:
-          elements: []
-          sYaml: "{{ .key.components | toJson }}"
+          elements: "{{key.components}}"
   - matrix:
       generators:
       - clusters:
