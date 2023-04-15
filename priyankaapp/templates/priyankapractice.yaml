@@ -46,7 +46,6 @@ spec:
                 - appName: priyankalearnings
   template:
     metadata:
-      # name: "{{path.basename}}-{{values.env}}"
       name: "{{ . }}-{{values.env}}"
     spec:
       project: "{{values.project}}"
@@ -60,7 +59,6 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            # - "/manifests/{{path.basename}}/values-{{values.env}}.yaml"
             - "/manifests/{{ . }}/values-{{values.env}}.yaml"
       destination:
         server: "{{server}}"
