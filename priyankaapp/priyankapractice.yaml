@@ -38,7 +38,8 @@ spec:
                       - path: "applist.yaml"
                 # cluster generator, 'child' #2
                 - list:
-                    elements: '{{apps | toYaml}}'
+                    elements: 
+                    - '{{apps | toYaml}}'
     - matrix:
         generators:
           - clusters:
