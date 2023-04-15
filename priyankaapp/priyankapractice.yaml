@@ -18,8 +18,9 @@ spec:
             project: default
             elementsPath: priyankaapp/list-elementsYaml-example.yaml
       - list:
-          elements:
-            '{{values.elementsPath}}'
+          elementsYaml: "{{ values.elementsPath | toYaml }}"
+          # elements:
+          #   '{{values.elementsPath}}'
   - matrix:
       generators:
       - clusters:
