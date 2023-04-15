@@ -1,5 +1,4 @@
 key:
-  components:
-    - appName: priyankapractice
-    - appName: solar-system
-    - appName: priyankalearnings
+  - appName: priyankapractice
+  - appName: solar-system
+  - appName: priyankalearnings

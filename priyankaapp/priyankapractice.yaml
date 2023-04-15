@@ -21,16 +21,24 @@ spec:
           #       - appName: priyankapractice
           #       - appName: solar-system
           #       - appName: priyankalearnings
-          - git:
-              repoURL: https://github.com/sarsatis/helm-charts.git
-              revision: main
-              directories:
-                # - path: /manifests/[priyankapractice|priyankalearnings]
-                #   exclude: true
-                - path: manifests/*
-                - path: manifests/[priyankapractice|solar-system]
-                  exclude: true
-
+          # - git:
+          #     repoURL: https://github.com/sarsatis/helm-charts.git
+          #     revision: main
+          #     directories:
+          #       - path: manifests/*
+          #       - path: manifests/priyankapractice
+          #         exclude: true
+          - matrix:
+              generators:
+                # git generator, 'child' #1
+                - git:
+                    repoURL: https://github.com/argoproj/applicationset.git
+                    revision: HEAD
+                    files:
+                      - path: "applist.yaml"
+                # cluster generator, 'child' #2
+                - list:
+                    elements: '{{apps}}'
     - matrix:
         generators:
           - clusters:
@@ -48,7 +56,8 @@ spec:
                 - appName: priyankalearnings
   template:
     metadata:
-      name: "{{path.basename}}-{{values.env}}"
+      # name: "{{path.basename}}-{{values.env}}"
+      name: "{{appName}}-{{values.env}}"
     spec:
       project: "{{values.project}}"
       syncPolicy:
@@ -61,7 +70,8 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/{{path.basename}}/values-{{values.env}}.yaml"
+            # - "/manifests/{{path.basename}}/values-{{values.env}}.yaml"
+            - "/manifests/{{appName}}/values-{{values.env}}.yaml"
       destination:
         server: "{{server}}"
         namespace: argocd
