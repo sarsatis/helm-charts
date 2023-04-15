@@ -1,4 +1,3 @@
-{{- range .Values.applications }}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -17,19 +16,18 @@ spec:
                 env: dev
                 targetRevision: main
                 project: default
-                server: https://devops-aks-tools-dns-m7p98jvr.hcp.eastus.azmk8s.io:443
           # - list:
           #     elements:
           #       - appName: priyankapractice
           #       - appName: solar-system
           #       - appName: priyankalearnings
-          # - git:
-          #     repoURL: https://github.com/sarsatis/helm-charts.git
-          #     revision: main
-          #     directories:
-          #       - path: manifests/*
-          #       - path: manifests/priyankapractice
-          #         exclude: true
+          - git:
+              repoURL: https://github.com/sarsatis/helm-charts.git
+              revision: main
+              directories:
+                - path: manifests/*
+                - path: manifests/priyankapractice
+                  exclude: true
     - matrix:
         generators:
           - clusters:
@@ -47,7 +45,7 @@ spec:
                 - appName: priyankalearnings
   template:
     metadata:
-      name: "{{ . }}-{{values.env}}"
+      name: "{{path.basename}}-{{values.env}}"
     spec:
       project: "{{values.project}}"
       syncPolicy:
@@ -60,8 +58,7 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/{{ . }}/values-{{values.env}}.yaml"
+            - "/manifests/{{path.basename}}/values-{{values.env}}.yaml"
       destination:
-        server: "{{values.server}}"
+        server: "{{server}}"
         namespace: argocd
-{{- end }}
