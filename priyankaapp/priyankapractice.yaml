@@ -27,7 +27,7 @@ spec:
               directories:
                 # - path: /manifests/[priyankapractice|priyankalearnings]
                 #   exclude: true
-                - path: /manifests/*
+                - path: manifests/*
 
     - matrix:
         generators:
