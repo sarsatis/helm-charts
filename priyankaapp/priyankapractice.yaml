@@ -25,8 +25,8 @@ spec:
               repoURL: https://github.com/sarsatis/helm-charts.git
               revision: main
               directories:
-                - path: /manifests/[priyankapractice|priyankalearnings]
-                  exclude: true
+                # - path: /manifests/[priyankapractice|priyankalearnings]
+                #   exclude: true
                 - path: /manifests/*
 
     - matrix:
