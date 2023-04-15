@@ -26,6 +26,9 @@ spec:
           revision: HEAD
           directories:
           - path: manifests/*
+          - path: manifests/[priyankapractice|priyankalearnings]
+            exclude: true
+
   - matrix:
       generators:
       - clusters:
