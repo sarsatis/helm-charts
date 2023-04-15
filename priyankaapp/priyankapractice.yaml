@@ -39,7 +39,7 @@ spec:
                 # cluster generator, 'child' #2
                 - list:
                     elements: 
-                    - '{{apps | toYaml}}'
+                    - '{{path.apps | toYaml}}'
     - matrix:
         generators:
           - clusters:
