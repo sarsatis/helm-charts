@@ -9,10 +9,10 @@ spec:
         github:
           owner: sarsatis
           repo: helm-charts
-          # tokenRef:
-          #   secretName: repo-3066764709
-          #   key: password
-          appSecretName: private-repo-creds
+          tokenRef:
+            secretName: github-token
+            key: token
+          # appSecretName: private-repo-creds
           labels:
             - preview
         requeueAfterSeconds: 15
