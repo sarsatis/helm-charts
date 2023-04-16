@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: main
-    path: priyankaapp/clustergenerator
+    targetRevision: helmtemplatingapproach
+    path: priyankaapp/templatingapproach
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

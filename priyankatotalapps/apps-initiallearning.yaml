@@ -9,14 +9,14 @@ spec:
   project: default
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: main
-    path: priyankaapp/clustergenerator
+    targetRevision: HEAD
+    path: priyankaapp/initiallearning
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
   syncPolicy:
     syncOptions:
-      - CreateNamespace=true  
+      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
