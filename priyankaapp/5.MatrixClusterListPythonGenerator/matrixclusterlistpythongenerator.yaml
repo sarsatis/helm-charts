@@ -24,7 +24,7 @@ spec:
                     - path: manifests/*
               - list:
                   elements:
-                    - appName: "{{ path.basename }}"
+                    - appName: "{{ path.basenameNormalized }}"
     # - matrix:
     #     generators:
     #       - clusters:
