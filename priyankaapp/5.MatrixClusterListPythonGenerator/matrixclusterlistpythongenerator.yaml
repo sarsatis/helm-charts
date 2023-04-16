@@ -42,7 +42,7 @@ spec:
     #             - appName: priyankalearnings
   template:
     metadata:
-      name: "appName-{{values.env}}"
+      name: "{{.appName}}-{{values.env}}"
     spec:
       project: "{{values.project}}"
       syncPolicy:
@@ -55,7 +55,7 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/{{appName}}/values-{{values.env}}.yaml"
+            - "/manifests/{{.appName}}/values-{{values.env}}.yaml"
       destination:
         server: "{{server}}"
         namespace: argocd
