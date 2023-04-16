@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: "{{.Greeting}}"
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - clusters:
+              selector:
+                matchLabels:
+                  env: dev
+              values:
+                env: dev
+                targetRevision: main
+                project: default
+          - list:
+              elements:
+                - appName: "{{ .Values.appName }}"
+                - appName: solar-system
+                - appName: priyankalearnings
+                - appName: test123
+    - matrix:
+        generators:
+          - clusters:
+              selector:
+                matchLabels:
+                  env: sit
+              values:
+                env: sit
+                targetRevision: main
+                project: default
+          - list:
+              elements:
+                - appName: priyankapractice
+                - appName: solar-system
+                - appName: priyankalearnings
+  template:
+    metadata:
+      name: "{{appName}}-{{values.env}}"
+    spec:
+      project: "{{values.project}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/sarsatis/helm-charts.git
+        targetRevision: "{{values.targetRevision}}"
+        path: charts/helm-charts
+        helm:
+          valueFiles:
+            - "/manifests/{{appName}}/values-{{values.env}}.yaml"
+      destination:
+        server: "{{server}}"
+        namespace: argocd
+# ["spec","generators",0,"matrix","generators",1,"list","elements",0,"appName"]

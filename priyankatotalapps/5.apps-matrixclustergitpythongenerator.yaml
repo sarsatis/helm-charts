@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: priyanktotalaapps
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sarsatis/helm-charts.git
+    targetRevision: main
+    path: priyankaapp/5.MatrixClusterGitPythonGenerators
+    helm:
+      valueFiles:
+      - "/priyankaapp/5.MatrixClusterListPythonGenerator/values.yaml"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true  
+    automated:
+      prune: true
+      selfHeal: true
