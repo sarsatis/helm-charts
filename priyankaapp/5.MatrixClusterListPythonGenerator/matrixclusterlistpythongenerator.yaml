@@ -15,16 +15,16 @@ spec:
                 env: dev
                 targetRevision: main
                 project: default
-          - matrix:
-              generators:
-              - git:
-                  repoURL: https://github.com/sarsatis/helm-charts.git
-                  revision: main
-                  directories:
-                    - path: manifests/*
-              - list:
-                  elements:
-                    - appName: "{{ path.basenameNormalized }}"
+          # - matrix:
+          #     generators:
+          - git:
+              repoURL: https://github.com/sarsatis/helm-charts.git
+              revision: main
+              directories:
+                - path: manifests/*
+              # - list:
+              #     elements:
+              #       - appName: "{{ path.basenameNormalized }}"
     # - matrix:
     #     generators:
     #       - clusters:
