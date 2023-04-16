@@ -12,6 +12,7 @@ spec:
           # tokenRef:
           #   secretName: repo-3066764709
           #   key: password
+          appSecretName: private-repo-creds
           labels:
             - preview
         requeueAfterSeconds: 15
