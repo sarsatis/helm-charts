@@ -19,11 +19,11 @@ spec:
         requeueAfterSeconds: 15
   template:
     metadata:
-      name: "{{ index .labels 0 }}-{{branch}}-{{number}}"
+      name: "{{ index .labels 0 }}-{{.branch}}-{{.number}}"
     spec:
       source:
         repoURL: https://github.com/sarsatis/helm-charts.git
-        targetRevision: "{{head_sha}}"
+        targetRevision: "{{.head_sha}}"
         path: charts/helm-charts
         helm:
           valueFiles:
@@ -37,4 +37,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{ index .labels 0 }}-{{branch}}-{{number}}"
+        namespace: "{{ index .labels 0 }}-{{.branch}}-{{.number}}"
