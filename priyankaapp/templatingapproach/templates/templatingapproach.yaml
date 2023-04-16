@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: helmtemplatingapproach
+    targetRevision: main
     path: charts/helm-charts
     helm:
       valueFiles:

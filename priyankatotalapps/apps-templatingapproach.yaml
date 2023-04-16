@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: helmtemplatingapproach
+    targetRevision: main
     path: priyankaapp/templatingapproach
   destination:
     server: https://kubernetes.default.svc
