@@ -15,27 +15,31 @@ spec:
                 env: dev
                 targetRevision: main
                 project: default
-          - list:
-              elements:
-                - appName: "{{ .Values.appName }}"
-                - appName: solar-system
-                - appName: priyankalearnings
-                - appName: test123
-    - matrix:
-        generators:
-          - clusters:
-              selector:
-                matchLabels:
-                  env: sit
-              values:
-                env: sit
-                targetRevision: main
-                project: default
-          - list:
-              elements:
-                - appName: priyankapractice
-                - appName: solar-system
-                - appName: priyankalearnings
+          - matrix:
+              generators:
+              - git:
+                  repoURL: https://github.com/sarsatis/helm-charts.git
+                  revision: main
+                  directories:
+                    - path: manifests/*
+              - list:
+                  elements:
+                    - appName: "{{ path.basename }}"
+    # - matrix:
+    #     generators:
+    #       - clusters:
+    #           selector:
+    #             matchLabels:
+    #               env: sit
+    #           values:
+    #             env: sit
+    #             targetRevision: main
+    #             project: default
+    #       - list:
+    #           elements:
+    #             - appName: priyankapractice
+    #             - appName: solar-system
+    #             - appName: priyankalearnings
   template:
     metadata:
       name: "{{appName}}-{{values.env}}"
