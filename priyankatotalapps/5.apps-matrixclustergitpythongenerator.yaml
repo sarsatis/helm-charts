@@ -11,9 +11,9 @@ spec:
     repoURL: https://github.com/sarsatis/helm-charts.git
     targetRevision: main
     path: priyankaapp/5.MatrixClusterListPythonGenerator
-    helm:
-      valueFiles:
-      - "/priyankaapp/5.MatrixClusterListPythonGenerator/values.yaml"
+    directory:
+      include: "/priyankaapp/5.MatrixClusterListPythonGenerator/values.yaml"
+      include: "/priyankaapp/5.MatrixClusterListPythonGenerator/matrixclusterlistpythongenerator.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
