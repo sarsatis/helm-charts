@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/sarsatis/helm-charts.git
     targetRevision: main
-    path: priyankaapp/5.MatrixClusterGitPythonGenerator
+    path: priyankaapp/5.MatrixClusterListPythonGenerator
     helm:
       valueFiles:
       - "/priyankaapp/5.MatrixClusterListPythonGenerator/values.yaml"
