@@ -42,7 +42,7 @@ spec:
     #             - appName: priyankalearnings
   template:
     metadata:
-      name: "{{path.baseName}}-{{values.env}}"
+      name: "{{path.basename}}-{{values.env}}"
     spec:
       project: "{{values.project}}"
       syncPolicy:
