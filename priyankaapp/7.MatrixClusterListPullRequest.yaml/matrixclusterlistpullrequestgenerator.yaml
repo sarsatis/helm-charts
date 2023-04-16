@@ -7,6 +7,17 @@ spec:
   generators:
     - matrix:
         generators:
+          - pullRequest:
+              github:
+                owner: sarsatis
+                repo: helm-charts
+                tokenRef:
+                  secretName: github-token
+                  key: token
+                # appSecretName: private-repo-creds
+                labels:
+                  - preview
+              requeueAfterSeconds: 15
           - clusters:
               selector:
                 matchLabels:
@@ -20,17 +31,7 @@ spec:
                 - appName: priyankapractice
                 - appName: solar-system
                 - appName: priyankalearnings
-    - pullRequest:
-        github:
-          owner: sarsatis
-          repo: helm-charts
-          tokenRef:
-            secretName: github-token
-            key: token
-          # appSecretName: private-repo-creds
-          labels:
-            - preview
-        requeueAfterSeconds: 15
+    
   template:
     metadata:
       name: "{{appName}}-{{values.env}}-{{branch}}-{{number}}"
