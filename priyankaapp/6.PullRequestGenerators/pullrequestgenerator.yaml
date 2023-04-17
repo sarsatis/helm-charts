@@ -25,7 +25,7 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/{{ index .labels 0 }}/values.yaml"
+            - "/manifests/{{ index .labels 0 }}/values-{{ index .labels 1 }}.yaml"
       project: default
       syncPolicy:
         syncOptions:
