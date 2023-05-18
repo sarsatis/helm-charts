@@ -27,7 +27,7 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: {{ .Values.appName }}-preview
+    app: {{ .Values.appName }}
   type: ClusterIP
 status:
   loadBalancer: {}
