@@ -18,16 +18,19 @@ spec:
   #         previewService: {{ .Values.appName }}-preview
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
-      maxSurge: "50%"
+      maxSurge: "25%"
       maxUnavailable: 0
       steps:
-        - setWeight: 10
+        - setWeight: 30
         - pause:
             duration: 30s
-        - setWeight: 20
+        - setWeight: 50
         - pause:
             duration: 60s
-        - setWeight: 70
+        - setWeight: 80
+        - pause:
+            duration: 60s
+        - setWeight: 100 
         - pause: {}
 
   template:
