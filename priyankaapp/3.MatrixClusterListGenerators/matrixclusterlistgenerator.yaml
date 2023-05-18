@@ -19,8 +19,8 @@ spec:
           - list:
               elements:
                 # - appName: priyankapractice
-                # - appName: priyankalearnings
-                - appName: solar-system
+                - appName: priyankalearnings
+                # - appName: solar-system
     - matrix:
         generators:
           - clusters:
