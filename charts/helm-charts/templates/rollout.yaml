@@ -5,17 +5,31 @@ metadata:
   labels:
     app: "{{ .Values.appName }}"
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: { { .Values.replicaCount } }
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: "{{ .Values.appName }}"
+  #   strategy:
+  #     blueGreen:
+  #     #   activeService: {{ template "helm-application.name" . }}
+  #     #   previewService: {{ template "helm-application.name" . }}-preview
+  #         activeService: {{ .Values.appName }}
+  #         previewService: {{ .Values.appName }}-preview
   strategy:
-    blueGreen:
-    #   activeService: {{ template "helm-application.name" . }}
-    #   previewService: {{ template "helm-application.name" . }}-preview
-        activeService: {{ .Values.appName }}
-        previewService: {{ .Values.appName }}-preview
+    canary: #Indicates that the rollout should use the Canary strategy
+      maxSurge: "25%"
+      maxUnavailable: 0
+      steps:
+        - setWeight: 10
+        - pause:
+            duration: 30s
+        - setWeight: 20
+        - pause:
+            duration: 60s
+        - setWeight: 70
+        - pause: {}
+
   template:
     metadata:
       labels:
