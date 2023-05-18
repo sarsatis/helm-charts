@@ -14,8 +14,8 @@ spec:
     blueGreen:
     #   activeService: {{ template "helm-application.name" . }}
     #   previewService: {{ template "helm-application.name" . }}-preview
-    activeService: {{ .Values.appName }}
-    previewService: {{ .Values.appName }}-preview
+        activeService: {{ .Values.appName }}
+        previewService: {{ .Values.appName }}-preview
   template:
     metadata:
       labels:
