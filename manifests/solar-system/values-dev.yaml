@@ -10,5 +10,5 @@ image:
   repository: sarthaksatish/solar-system
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 1-ba5cd3b9f76fa6f1493dd38eb75b41dcd06ea59e
+  tag: 3-e651b07a6d7795d7ff5312ff4537ec1b604294f0
 
