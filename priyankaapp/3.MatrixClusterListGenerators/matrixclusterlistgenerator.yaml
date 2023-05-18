@@ -18,9 +18,9 @@ spec:
                 project: default
           - list:
               elements:
-                - appName: priyankapractice
+                # - appName: priyankapractice
+                # - appName: priyankalearnings
                 - appName: solar-system
-                - appName: priyankalearnings
     - matrix:
         generators:
           - clusters:
