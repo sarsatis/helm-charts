@@ -10,5 +10,5 @@ image:
   repository: sarthaksatish/priyankalearnings
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6ee34a7a85552b4219afb3e528d2ae04aa2d1309
+  tag: 18fe6fa3a68e420f02076547e81a5d787002fb20
 
