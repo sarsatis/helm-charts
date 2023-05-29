@@ -8,4 +8,4 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
 #   tag: 1
-  imageTag: 5
+  imageTag: 6
