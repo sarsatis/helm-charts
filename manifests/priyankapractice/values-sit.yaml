@@ -11,5 +11,4 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   imageTag: 30
-  priyankaLearningsImageTag: 1
-
+  priyankaLearningsImageTag: 10
