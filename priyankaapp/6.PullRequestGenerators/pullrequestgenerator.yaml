@@ -17,7 +17,8 @@ spec:
         requeueAfterSeconds: 15
   template:
     metadata:
-      name: "{{ index .labels 0 }}-{{.branch}}-{{.number}}"
+      # name: "{{ index .labels 0 }}-{{.branch}}-{{.number}}"
+      name: "{{ index .labels 0 }}-{{.number}}"
     spec:
       source:
         repoURL: https://github.com/sarsatis/helm-charts.git
