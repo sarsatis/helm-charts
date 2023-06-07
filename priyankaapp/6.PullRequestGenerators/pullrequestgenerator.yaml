@@ -21,7 +21,7 @@ spec:
     spec:
       source:
         repoURL: https://github.com/sarsatis/helm-charts.git
-        targetRevision: "{{.head_sha}}"
+        targetRevision: "{{.branch}}"
         path: charts/helm-charts
         helm:
           valueFiles:
