@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: "{{ .Values.appName }}"
-  name: "{{ .Values.appName }}"
+  name: "{{ .Release.Name }}"
 spec:
   ports:
     - port: 8080
