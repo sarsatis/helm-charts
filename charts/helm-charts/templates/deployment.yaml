@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   labels:
     app: "{{ .Values.appName }}"
-  name: "{{ .Values.appName }}"
+  name: {{ .Release.Name }}
 spec:
-  replicas: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: "{{ .Values.appName }}"
