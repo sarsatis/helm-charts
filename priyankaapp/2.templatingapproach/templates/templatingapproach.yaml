@@ -19,7 +19,7 @@ spec:
         - "/manifests/{{ . }}/values.yaml"
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: mfa
   syncPolicy:
     syncOptions:
       - CreateNamespace=true  
