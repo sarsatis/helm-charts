@@ -3,6 +3,6 @@
 # Declare variables to be passed into your templates.
 
 applications:
-- solar-system
+# - solar-system
 - priyankalearnings
-- priyankapractice
+# - priyankapractice
