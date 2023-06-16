@@ -17,7 +17,7 @@ spec:
           host: {{ .Release.Name }}
           port:
             number: 8080
-{{- else  }}
+{{- else if eq .Values.canary "True" }}
   - match:
     - uri:
         prefix: /app1
