@@ -8,7 +8,7 @@ spec:
   gateways:
   - priyanka-gateway
   http:
-{{ if eq .Values.canary "sa" }}
+{{ if eq .Values.canary sa }}
   - match:
     - uri:
         prefix: /app1
@@ -17,7 +17,7 @@ spec:
           host: {{ .Release.Name }}
           port:
             number: 8080
-{{ else if eq .Values.canary "as" }}
+{{ else if eq .Values.canary as }}
   - match:
     - uri:
         prefix: /app1
