@@ -10,7 +10,7 @@ spec:
   http:
   - match:
     - uri:
-        exact: /app1
+        prefix: /app1
     route:
       - destination:
           host: priyankalearnings
