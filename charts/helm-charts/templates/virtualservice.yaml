@@ -8,6 +8,7 @@ spec:
   gateways:
   - priyanka-gateway
   http:
+{{- if eq .Values.canary "False" }}
   - match:
     - uri:
         prefix: /app1
@@ -16,3 +17,16 @@ spec:
           host: {{ .Release.Name }}
           port:
             number: 8080
+{{- else  }}
+  - match:
+    - uri:
+        prefix: /app1
+      headers:
+        jira-id:
+          exact: {{ .Values.jiraId }}
+    route:
+      - destination:
+          host: {{ .Release.Name }}
+          port:
+            number: 8080
+{{- end }}
