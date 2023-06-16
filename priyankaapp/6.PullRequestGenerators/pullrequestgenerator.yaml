@@ -26,7 +26,7 @@ spec:
         helm:
           parameters:
             - name: canary
-              value: "True"
+              value: "as"
             - name: jiraId
               value: "{{ index .labels 2 }}"
           valueFiles:
