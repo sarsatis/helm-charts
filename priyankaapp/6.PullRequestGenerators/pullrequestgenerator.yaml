@@ -17,7 +17,7 @@ spec:
         requeueAfterSeconds: 15
   template:
     metadata:
-      name: "{{ index .labels 0 }}-{{.number}}"
+      name: "{{ index .labels 1 }}-{{.number}}"
     spec:
       source:
         repoURL: https://github.com/sarsatis/helm-charts.git
@@ -25,7 +25,7 @@ spec:
         path: charts/helm-charts
         helm:
           valueFiles:
-            - "/manifests/{{ index .labels 0 }}/values-{{ index .labels 1 }}.yaml"
+            - "/manifests/values-{{ index .labels 0 }}.yaml"
       project: default
       syncPolicy:
         syncOptions:
