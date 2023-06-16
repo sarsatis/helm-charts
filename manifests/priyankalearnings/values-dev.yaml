@@ -12,3 +12,5 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: e26521c67f25980911ad064dfe7efa8752c81fd5
 
+canary: "True"
+jiraId: "123"
