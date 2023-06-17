@@ -8,7 +8,7 @@ spec:
   gateways:
   - priyanka-gateway
   http:
-{{- if eq .Values.canary "False" }}
+{{- if eq (.Values.canary | toString) "False" }}
   - match:
     - uri:
         prefix: /app1
