@@ -26,7 +26,7 @@ spec:
         helm:
           parameters:
             - name: jiraId
-              value: {{ index .labels 2 }}
+              value: "{{ index .labels 2 }}"
           valueFiles:
             - "/manifests/{{ index .labels 1 }}/values-{{ index .labels 0 }}.yaml"
       project: default
