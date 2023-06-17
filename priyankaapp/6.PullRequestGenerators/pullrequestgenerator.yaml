@@ -24,11 +24,6 @@ spec:
         targetRevision: "{{.branch}}"
         path: charts/helm-charts
         helm:
-          parameters:
-            - name: canary
-              value: "True"
-            - name: jiraId
-              value: {{ index .labels 2 }}
           valueFiles:
             - "/manifests/{{ index .labels 1 }}/values-{{ index .labels 0 }}.yaml"
       project: default
