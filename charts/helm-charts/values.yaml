@@ -13,6 +13,6 @@ image:
   tag: 30
 
 canary: "True"
-jiraId: "123"
+jiraId: 123
 
 
