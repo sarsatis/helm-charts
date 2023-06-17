@@ -23,7 +23,7 @@ spec:
         prefix: /app1
       headers:
         jira-id:
-          exact: {{ .Values.jiraId }}
+          exact: {{ .Values.jiraId | quote }}
     route:
       - destination:
           host: {{ .Release.Name }}
