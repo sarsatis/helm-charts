@@ -1,0 +1,29 @@
+# templates/applications.yaml
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "{{ . }}"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sarsatis/helm-charts.git
+    targetRevision: main
+    path: charts/helm-charts
+    helm:
+      valueFiles:
+        - "/manifests/{{ . }}/values.yaml"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mfa
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true  
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
