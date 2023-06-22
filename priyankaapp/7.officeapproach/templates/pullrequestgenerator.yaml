@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: preview-environments
+  namespace: api
+spec:
+  goTemplate: true
+  generators:
+    - pullRequest:
+        github:
+          owner: sarsatis
+          repo: helm-charts
+          tokenRef:
+            secretName: github-token
+            key: token
+          # appSecretName: private-repo-creds
+        requeueAfterSeconds: 15
+  template:
+    metadata:
+      name: "{{ index .labels 1 }}-{{.number}}"
+    spec:
+      source:
+        repoURL: https://github.com/sarsatis/helm-charts.git
+        targetRevision: "{{.branch}}"
+        path: charts/helm-charts
+        helm:
+          parameters:
+            - name: jiraId
+              value: "{{ index .labels 2 }}"
+            - name: canary
+              value: "True"
+          valueFiles:
+            - "/manifests/{{ index .labels 1 }}/values-{{ index .labels 0 }}.yaml"
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "api"
