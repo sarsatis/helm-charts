@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: preview-environments
-  namespace: api
+  namespace: argocd
 spec:
   goTemplate: true
   generators:
@@ -40,4 +40,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: "api"
+        namespace: "argocd"
