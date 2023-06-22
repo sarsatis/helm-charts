@@ -6,7 +6,8 @@ spec:
   hosts:
   - '*'
   gateways:
-  - priyanka-gateway
+  # - priyanka-gateway
+  - banfield-gw
   http:
 {{- if eq (.Values.canary | toString) "False" }}
   - match:
