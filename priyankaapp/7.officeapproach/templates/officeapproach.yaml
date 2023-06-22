@@ -19,7 +19,7 @@ spec:
         - "/manifests/{{ . }}/values.yaml"
   destination:
     server: https://kubernetes.default.svc
-    namespace: mfa
+    namespace: api
   syncPolicy:
     syncOptions:
       - CreateNamespace=true  

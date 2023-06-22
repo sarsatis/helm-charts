@@ -13,7 +13,7 @@ spec:
     path: priyankaapp/7.officeapproach
   destination:
     server: https://kubernetes.default.svc
-    namespace: mfa
+    namespace: api
   syncPolicy:
     syncOptions:
       - CreateNamespace=true  
