@@ -17,6 +17,7 @@ spec:
     helm:
       valueFiles:
         - "/manifests/{{ . }}/immutable/values.yaml"
+        - "/manifests/{{ . }}/configmap/configmap.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
