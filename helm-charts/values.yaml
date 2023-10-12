@@ -18,3 +18,5 @@ jiraId: test-123
 port: 8080
 targetPort: 8080
 
+appKind: "microservice"
+
