@@ -18,6 +18,7 @@ spec:
       valueFiles:
         - "/manifests/{{ . }}/{{ $.Values.env.name }}/immutable/values.yaml"
         - "/manifests/{{ . }}/{{ $.Values.env.name }}/configmap/configmap.yaml"
+        - "values.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Values.appNamespace }}
