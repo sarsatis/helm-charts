@@ -4,10 +4,10 @@
 
 replicaCount: 1
 
-appName: priyankalearnings
+appName: employeemanagement
 
 image:
-  repository: sarthaksatish/priyankalearnings
+  repository: sarthaksatish/employeemanagement
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  imageTag: 8
+  tag: 33
