@@ -1,9 +1,0 @@
-appName: mysql
-
-image: 
-  repo: mysql
-  tag: 8.0.33
-
-
-port: 3306
-targetPort: 3306
