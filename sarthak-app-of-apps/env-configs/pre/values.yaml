@@ -1,2 +1,8 @@
 env:
   name: pre
+
+applications:
+# - solar-system
+# - priyankalearnings
+- employeemanagement
+# - priyankapractice

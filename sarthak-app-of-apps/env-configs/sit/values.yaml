@@ -1,2 +1,9 @@
 env:
   name: sit
+
+applications:
+# - solar-system
+# - priyankalearnings
+- employeemanagement
+- mysql
+# - priyankapractice
