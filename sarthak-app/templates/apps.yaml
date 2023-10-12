@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    path: app-of-apps
+    path: sarthak-app-of-apps
     helm:
       valueFiles:
       - "env-configs/{{ .Values.env.name }}/values.yaml"
