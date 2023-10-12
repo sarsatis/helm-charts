@@ -1,19 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: priyanktotalaapps
-  namespace: argocd
+  name: "apps-{{ .Values.env.name }}"
+  namespace: {{ .Values.namespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.project }}
   source:
-    repoURL: https://github.com/sarsatis/helm-charts.git
-    targetRevision: main
-    path: priyankaapp/7.officeapproach
+    repoURL: {{ .Values.repoUrl }}
+    targetRevision: {{ .Values.targetRevision }}
+    path: app-of-apps
+    helm:
+      valueFiles:
+      - "env-configs/{{ .Values.env.name }}/values.yaml"
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: {{ .Values.appNamespace }}
   syncPolicy:
     syncOptions:
       - CreateNamespace=true  

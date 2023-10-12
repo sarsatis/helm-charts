@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: preview-environments
-  namespace: argocd
+  name: pull-request-gen
+  namespace: {{ .Values.namespace }}
 spec:
   goTemplate: true
   generators:
@@ -13,25 +13,27 @@ spec:
           tokenRef:
             secretName: github-token
             key: token
-          # appSecretName: private-repo-creds
+          labels:
+          - canary
         requeueAfterSeconds: 15
   template:
     metadata:
-      name: "{{ index .labels 1 }}-{{.number}}"
+      name: {{ .Values.applicationName | quote }}
     spec:
       source:
-        repoURL: https://github.com/sarsatis/helm-charts.git
-        targetRevision: "{{.branch}}"
-        path: charts/helm-charts
+        repoURL: {{ .Values.repoUrl }}
+        targetRevision: {{ .Values.branch | quote }}
+        path: helm-charts
         helm:
           parameters:
             - name: jiraId
-              value: "{{ index .labels 2 }}"
+              value: {{ .Values.jiraId | quote }}
             - name: canary
               value: "True"
           valueFiles:
-            - "/manifests/{{ index .labels 1 }}/values-{{ index .labels 0 }}.yaml"
-      project: default
+            - {{ .Values.immutable | quote }}
+            - {{ .Values.config | quote }}
+      project: {{ .Values.project }}
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
@@ -40,4 +42,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: "argocd"
+        namespace: {{ .Values.appNamespace }}
