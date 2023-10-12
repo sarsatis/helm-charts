@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: "{{ .Values.appName }}"
-  name: "{{ .Release.Name }}-svc"
+  name: "{{ .Release.Name }}"
 spec:
   ports:
     - port: {{ .Values.port }}
