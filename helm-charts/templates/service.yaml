@@ -3,31 +3,14 @@ kind: Service
 metadata:
   labels:
     app: "{{ .Values.appName }}"
-  name: "{{ .Release.Name }}"
+  name: "{{ .Release.Name }}-svc"
 spec:
   ports:
-    - port: 8080
+    - port: {{ .Values.port }}
       protocol: TCP
-      targetPort: 8080
+      targetPort: {{ .Values.targetPort }}
   selector:
     app: "{{ .Values.appName }}"
-  type: ClusterIP
 status:
   loadBalancer: {}
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   labels:
-#     app: {{ .Values.appName }}-preview
-#   name: {{ .Values.appName }}-preview
-# spec:
-#   ports:
-#     - port: 8080
-#       protocol: TCP
-#       targetPort: 8080
-#   selector:
-#     app: {{ .Values.appName }}
-#   type: ClusterIP
-# status:
-#   loadBalancer: {}
+

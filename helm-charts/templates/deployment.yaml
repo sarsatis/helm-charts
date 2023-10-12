@@ -20,4 +20,17 @@ spec:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           name: "{{ .Values.appName }}"
           resources: {}
+{{- if eq (.Values.appName | toString) "mysql" }}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+                key: MYSQL_ROOT_PASSWORD
+                name: mysql
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+                key: MYSQL_DATABASE
+                name: mysql
+{{- end }}
 status: {}

@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-appName: priyankapractice
+appName: sample
 
 image:
   repository: sarthaksatish/priyankapractice
@@ -15,4 +15,6 @@ image:
 canary: "False"
 jiraId: test-123
 
+port: 8080
+targetPort: 8080
 
