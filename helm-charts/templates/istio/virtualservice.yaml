@@ -9,7 +9,10 @@ spec:
   hosts:
   - {{ .Release.Name }}.simplifydevopstools.com
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: "/getemployees"
+    route:
     - destination:
         host: {{ .Release.Name }}
         port:
