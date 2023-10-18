@@ -10,4 +10,4 @@ image:
   repository: sarthaksatish/employeemanagement
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 281dee4b682c621319774c3e3429e9682b64ae86-6
+  tag: ac319b70ad097c086a77618e3da6f29ef3094869-14
