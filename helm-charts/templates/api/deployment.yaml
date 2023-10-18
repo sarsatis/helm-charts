@@ -12,7 +12,8 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configuration/configmap.yaml") . | nospace | sha256sum }}
       labels:
         app: "{{ .Values.appName }}"
     spec:
