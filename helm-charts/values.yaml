@@ -22,5 +22,4 @@ appKind: "microservice"
 
 gatewayName: apps-gateway
 
-dbname: default
 
