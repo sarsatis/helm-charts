@@ -9,7 +9,7 @@ spec:
   hosts:
   - {{ .Release.Name }}.simplifydevopstools.com
   http:
-    route:
+  - route:
     - destination:
         host: {{ .Release.Name }}
         port:
