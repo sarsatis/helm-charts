@@ -22,3 +22,5 @@ appKind: "microservice"
 
 dbname: myapps
 
+gatewayName: apps-gateway
+
