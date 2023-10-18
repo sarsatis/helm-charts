@@ -4,6 +4,7 @@ env:
 applications:
 # - solar-system
 # - priyankalearnings
+- librarymanagementsystem
 - employeemanagement
 - mysql
 # - priyankapractice
