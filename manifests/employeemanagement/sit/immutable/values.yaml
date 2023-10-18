@@ -11,3 +11,5 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: cf0cf5d739432245851301f82ef5572360fa0a5f-5
+
+dbname: employees
