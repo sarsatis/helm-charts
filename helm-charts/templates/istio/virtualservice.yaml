@@ -11,7 +11,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: "/getemployees"
+        prefix: "/{{ .Release.Name }}"
     route:
     - destination:
         host: {{ .Release.Name }}
