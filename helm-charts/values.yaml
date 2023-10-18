@@ -20,3 +20,5 @@ targetPort: 8080
 
 appKind: "microservice"
 
+dbname: myapps
+
