@@ -1,2 +1,4 @@
 env:
   name: pre
+
+targetRevision: pre
