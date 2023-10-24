@@ -123,7 +123,7 @@
     template:
         metadata:
         name: >-
-            {{ index (sortAlpha .labels) 0 | replace "appname: " ""}}-{{ .number
+            {{ index (sortAlpha .labels) 0 | replace "appname: " "}}-{{ .number
             }}-canary
         spec:
         destination:
@@ -134,18 +134,18 @@
             helm:
             parameters:
                 - name: jiraId
-                value: '{{ index (sortAlpha .labels) 3 | replace "releaseName: " ""}}'
+                value: '{{ index (sortAlpha .labels) 3 | replace "releaseName: " "}}'
                 - name: canary
                 value: 'True'
             valueFiles:
                 - >-
-                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " ""
+                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " "
                 }}/{{ index (sortAlpha .labels) 2 | replace "env: "
-                ""}}/immutable/values.yaml
+                "}}/immutable/values.yaml
                 - >-
-                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " ""
+                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " "
                 }}/{{ index (sortAlpha .labels) 2 | replace "env: "
-                ""}}/configmap/configmap.yaml
+                "}}/configmap/configmap.yaml
             path: helm-charts
             repoURL: 'https://github.com/sarsatis/helm-charts.git'
             targetRevision: '{{ .branch }}'
@@ -156,8 +156,36 @@
             syncOptions:
             - CreateNamespace=true
     ```
-     - third
-   
+     - In the generator section repository is configured where pull requests need to be detected and deployed
+     - Pull requests labelled `canary` will be detected and deployed into cluster
+     - A github-token secret is create into cluster to enable communication from cluster to github repository.
+     - PR will be labelled with `appname`, `env` to which it has to be deployed, `releaseName` of the feature which is being developed and `canary` tag to identify from other PR
+     - Once the PR is labelled Pull Request generator uses this labels to create canary version of the application dynamically and deploy's it to cluster. (Python script is responsible for creation of Pull Request and adding labels. Pull request creation is part of `Jenkinsfile`)
+     - Sample PR with labels added
+       ![Alt text](assets/PullRequest.png)
+     - Sample applications deployed from above PR
+       ![Alt text](assets/PullRequestArgoUI.png)
+     - Canary App Deployed using Pull Request Generator
+       ![Alt text](assets/PullRequestIndApp.png)
+     
+## Snapshot of apps-of-app pattern used
+
+![Alt text](assets/PullRequestArgoUI.png)
+
+## Snapshot of microservice deployed using apps-of-app pattern
+
+![Alt text](assets/Application.png)
+
+## To install sarthak apps into respective environment use the below command
+
+```go
+helm install sarthak-apps sarthak-app/ -f sarthak-app/env-configs/<env>/values.yaml
+
+e.g
+helm install sarthak-apps sarthak-app/ -f sarthak-app/env-configs/pre/values.yaml
+```
+
+> env :- `sit` or `pre`
    
    
         
