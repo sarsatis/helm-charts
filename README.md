@@ -192,6 +192,14 @@ helm install sarthak-apps sarthak-app/ -f sarthak-app/env-configs/pre/values.yam
 ```
 
 > env :- `sit` or `pre`
+
+
+## Problems and issues faced with this approach
+1. common helm template issue
+2. Image propagation from one env to another env
+3. Argo some times gets stuck while getting deletion we have to delete the finilizers manually and the apps gets deleted
+4. Sync status if there is something wrong in yaml it keeps syncing new changes are not picked immediately until we stop the sync manually
+5.We use helm install manually to bring up all apps whats the best way to automate it
    
    
         
