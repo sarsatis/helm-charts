@@ -3,6 +3,11 @@
 ## High Level Architecture Design
 ![Alt text](assets/ArgoCD.png)
 
+## Below is the application deployment journey depicted in flow chart
+
+![Alt text](assets/flowdiagram.png)
+
+
 ## Project Folder Structure and Control Flow
 
 - We have leveraged apps-of-apps pattern provided by ArgoCD
