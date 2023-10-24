@@ -97,6 +97,66 @@
    - Environment specific values for microservice application are provided
 
 5. PR Generator
+   - To have Blue Green implementation of a microservice we have used Pull Request Generator of ArgoCD
+     - Below is the yaml spec
+    ```yaml
+    apiVersion: argoproj.io/v1alpha1
+    kind: ApplicationSet
+    metadata:
+    labels:
+        app.kubernetes.io/instance: apps-sit
+    name: pull-request-gen
+    namespace: argocd
+    spec:
+    generators:
+        - pullRequest:
+            github:
+            labels:
+                - canary
+            owner: sarsatis
+            repo: helm-charts
+            tokenRef:
+                key: token
+                secretName: github-token
+            requeueAfterSeconds: 15
+    goTemplate: true
+    template:
+        metadata:
+        name: >-
+            {{ index (sortAlpha .labels) 0 | replace "appname: " ""}}-{{ .number
+            }}-canary
+        spec:
+        destination:
+            namespace: mfa
+            server: 'https://kubernetes.default.svc'
+        project: default
+        source:
+            helm:
+            parameters:
+                - name: jiraId
+                value: '{{ index (sortAlpha .labels) 3 | replace "releaseName: " ""}}'
+                - name: canary
+                value: 'True'
+            valueFiles:
+                - >-
+                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " ""
+                }}/{{ index (sortAlpha .labels) 2 | replace "env: "
+                ""}}/immutable/values.yaml
+                - >-
+                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " ""
+                }}/{{ index (sortAlpha .labels) 2 | replace "env: "
+                ""}}/configmap/configmap.yaml
+            path: helm-charts
+            repoURL: 'https://github.com/sarsatis/helm-charts.git'
+            targetRevision: '{{ .branch }}'
+        syncPolicy:
+            automated:
+            prune: true
+            selfHeal: true
+            syncOptions:
+            - CreateNamespace=true
+    ```
+     - third
    
    
    
