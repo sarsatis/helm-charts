@@ -122,9 +122,9 @@
     goTemplate: true
     template:
         metadata:
-        name: >-
-            {{ index (sortAlpha .labels) 0 | replace "appname: " "}}-{{ .number
-            }}-canary
+        name: '>-
+            {{ index (sortAlpha .labels) 0 | replace "appname: " ""}}-{{ .number
+            }}-canary'
         spec:
         destination:
             namespace: mfa
@@ -134,18 +134,18 @@
             helm:
             parameters:
                 - name: jiraId
-                value: '{{ index (sortAlpha .labels) 3 | replace "releaseName: " "}}'
+                value: '{{ index (sortAlpha .labels) 3 | replace "releaseName: " ""}}'
                 - name: canary
                 value: 'True'
             valueFiles:
-                - >-
-                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " "
+                - '>-
+                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " ""
                 }}/{{ index (sortAlpha .labels) 2 | replace "env: "
-                "}}/immutable/values.yaml
-                - >-
-                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " "
+                ""}}/immutable/values.yaml'
+                - '>-
+                /manifests/{{ index (sortAlpha .labels) 0 | replace "appname: " ""
                 }}/{{ index (sortAlpha .labels) 2 | replace "env: "
-                "}}/configmap/configmap.yaml
+                ""}}/configmap/configmap.yaml'
             path: helm-charts
             repoURL: 'https://github.com/sarsatis/helm-charts.git'
             targetRevision: '{{ .branch }}'
@@ -155,6 +155,7 @@
             selfHeal: true
             syncOptions:
             - CreateNamespace=true
+
     ```
      - In the generator section repository is configured where pull requests need to be detected and deployed
      - Pull requests labelled `canary` will be detected and deployed into cluster
