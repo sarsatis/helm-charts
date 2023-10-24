@@ -1,5 +1,5 @@
 # templates/applications.yaml
-{{- range .Values.applications }}
+{{- range .Values.appList }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

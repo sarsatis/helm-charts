@@ -1,7 +1,7 @@
 env:
   name: sit
 
-applications:
+appList:
 # - solar-system
 # - priyankalearnings
 - librarymanagementsystem
