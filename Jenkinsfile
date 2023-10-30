@@ -1,8 +1,6 @@
 def podTemplate = "podTemplate.yaml"
 echo "${podTemplate}"
-sh "printenv"
-sh "pwd"
-sh "ls"
+
 
 pipeline {
     agent {
@@ -74,6 +72,17 @@ pipeline {
         GITHUB_TOKEN = credentials('githubpat')
     }
     stages {
+
+        stage('Preparation') {
+            steps {
+                script {
+                    sh 'printenv'
+                    sh 'pwd'
+                    sh 'ls'
+                }
+            }
+        }
+        
         stage('Unit Tests') {
             steps {
                 echo 'Implement unit tests if applicable from pr.'
