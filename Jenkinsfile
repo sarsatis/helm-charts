@@ -6,6 +6,7 @@ pipeline {
         kubernetes {
             label "jenkins-${UUID.randomUUID().toString()}"
             yamlFile "$podTemplate"
+            
         }
     }
     environment {
