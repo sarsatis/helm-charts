@@ -68,7 +68,7 @@ pipeline {
     stages {
         stage('Unit Tests') {
             steps {
-                echo 'Implement unit tests if applicable.'
+                echo 'Implement unit tests if applicable from pr.'
                 echo 'This stage is a sample placeholder'
             }
         }
