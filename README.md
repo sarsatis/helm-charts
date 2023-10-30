@@ -1,6 +1,6 @@
 # Sarthak Application manifest Repository
 
-## High Level Architecture Designsa
+## High Level Architecture Design
 ![Alt text](assets/ArgoCD.png)
 
 ## Below is the application deployment journey depicted in flow chart
