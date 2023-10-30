@@ -1,5 +1,5 @@
 def podTemplate = "podTemplate.yaml"
-echo ${podTemplate}
+echo "${podTemplate}"
 
 pipeline {
     agent {
