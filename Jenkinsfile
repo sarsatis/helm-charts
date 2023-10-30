@@ -1,5 +1,8 @@
 def podTemplate = "podTemplate.yaml"
 echo "${podTemplate}"
+sh "printenv"
+sh "pwd"
+sh "ls"
 
 pipeline {
     agent {
