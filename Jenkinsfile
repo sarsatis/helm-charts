@@ -1,5 +1,5 @@
-// def podTemplate = "podTemplate.yaml"
-def podTemplate = libraryResource('podTemplate.yaml')
+def podTemplate = "${WORKSPACE}/podTemplate.yaml"
+// def podTemplate = libraryResource('podTemplate.yaml')
 echo "${podTemplate}"
 
 
@@ -7,8 +7,8 @@ pipeline {
     agent {
         kubernetes {
             label "jenkins-${UUID.randomUUID().toString()}"
-            yaml "$podTemplate"
-            //yamlFile "$podTemplate"
+            // yaml "$podTemplate"
+            yamlFile "$podTemplate"
             // yaml """
             // apiVersion: v1
             // kind: Pod
