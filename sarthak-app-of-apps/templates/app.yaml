@@ -11,7 +11,8 @@ metadata:
 spec:
   info:
   - name: 'Propagate To RTL:'
-    value: 'https://example.com/{{ . }}'
+    value: 'http://34.28.94.32:8080/job/RTLPropagation/job/main/'
+    
   project: default
   source:
     repoURL: {{ $.Values.repoUrl }}
