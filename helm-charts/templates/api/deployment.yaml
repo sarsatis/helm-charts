@@ -14,7 +14,6 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configuration/configmap.yaml") . | nospace | sha256sum }}
-        link.argocd.argoproj.io/external-link: http://my-grafana.com/pre-generated-link
       labels:
         app: "{{ .Values.appName }}"
     spec:
