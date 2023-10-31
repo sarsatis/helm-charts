@@ -83,6 +83,7 @@ pipeline {
                         echo 'In Pr'
                         container(name: 'python') {
                         sh "printenv"
+                        sh "sudo apt-get install build-essential"
                         sh "pip3 install -r requirements.txt"
                         sh "python3 oop.py"
                         }
