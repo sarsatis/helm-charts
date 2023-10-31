@@ -9,6 +9,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  info:
   - name: 'Propagate To RTL:'
     value: 'https://example.com/{{ . }}'
   project: default
