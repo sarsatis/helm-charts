@@ -9,10 +9,6 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  info:
-  - name: 'Trigger-Pre:'
-    value: >-
-      http://34.28.94.32:32176/increment/125
   project: default
   source:
     repoURL: {{ $.Values.repoUrl }}
