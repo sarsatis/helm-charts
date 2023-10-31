@@ -11,8 +11,7 @@ metadata:
 spec:
   info:
   - name: 'Propagate To RTL:'
-    value: 'http://34.28.94.32:8080/job/RTLPropagation/job/main/'
-    
+    value: 'http://localhost:8080/api/jenkins/trigger-job'
   project: default
   source:
     repoURL: {{ $.Values.repoUrl }}
