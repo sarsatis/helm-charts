@@ -57,7 +57,7 @@ pipeline {
         }
     }
     environment {
-        NAME = "priyankalearnings"
+        NAME = "employeemanagement"
         // VERSION = "${env.GIT_COMMIT}"
         VERSION = "${env.BUILD_ID}"
         IMAGE_REPO = "gagan2104"
