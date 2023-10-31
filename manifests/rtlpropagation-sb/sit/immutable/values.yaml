@@ -4,10 +4,10 @@
 
 replicaCount: 1
 
-appName: employeemanagement
+appName: rtlpropagation-sb
 
 image:
-  repository: sarthaksatish/employeemanagement
+  repository: sarthaksatish/rtlpropagation-sb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: b9655cac00d8d357e2db5ad0834fa65655d9f4ab-2
