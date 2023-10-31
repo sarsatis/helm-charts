@@ -21,6 +21,13 @@ spec:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           name: "{{ .Values.appName }}"
           resources: {}
+{{- if eq (.Values.appName | toString) "rtlpropagation-sb" }}
+          - name: JENKINS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: jenkins-token
+                key: JENKINS_TOKEN
+{{- end }}               
 {{- if eq (.Values.appKind | toString) "db" }}
           env:
           - name: MYSQL_ROOT_PASSWORD
