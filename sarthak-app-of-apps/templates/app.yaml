@@ -8,6 +8,8 @@ metadata:
   namespace: {{ $.Values.namespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    name: sasasa
 spec:
   project: default
   source:
