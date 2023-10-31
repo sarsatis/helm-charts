@@ -104,7 +104,7 @@ class CreatePRAndAddLabel:
         return file_content,pr_created,file_content_decoded
     
     
-    def get_tag_from_yaml_file(file_path):
+    def get_tag_from_yaml_file(self,file_path):
         try:
             # Read the content of the YAML file
             with open(file_path, 'r') as file:
