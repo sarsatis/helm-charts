@@ -9,7 +9,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    name: sasasa
+    link.argocd.argoproj.io/external-link: http://my-grafana.com/pre-generated-link
 spec:
   project: default
   source:
