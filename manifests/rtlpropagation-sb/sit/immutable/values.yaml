@@ -10,4 +10,4 @@ image:
   repository: sarthaksatish/rtlpropagation-sb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: b9655cac00d8d357e2db5ad0834fa65655d9f4ab-2
+  tag: 1634813f748137a850273006cd63fc0aaee1eb1c-3
