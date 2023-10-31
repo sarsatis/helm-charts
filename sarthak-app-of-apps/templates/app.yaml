@@ -8,9 +8,9 @@ metadata:
   namespace: {{ $.Values.namespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    link.argocd.argoproj.io/external-link: http://my-grafana.com/pre-generated-link
 spec:
+  - name: 'Propagate To RTL:'
+    value: 'https://example.com/{{ . }}'
   project: default
   source:
     repoURL: {{ $.Values.repoUrl }}
