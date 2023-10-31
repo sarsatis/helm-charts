@@ -6,7 +6,6 @@ from requests.exceptions import ReadTimeout
 import socket
 import tempfile
 import fileinput
-import yaml
 
 class CreatePRAndAddLabel:
 
