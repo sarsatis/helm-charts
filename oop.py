@@ -48,7 +48,7 @@ class CreatePRAndAddLabel:
 
         file_content, pr_created, file_content_decoded = self.check_if_pr_exists_and_fetch_file_content(repo,self.file_path)
         
-        imagetag = self.extract_image_tag(self.sit_file_path)
+        imagetag = self.get_tag_from_yaml_file(self.sit_file_path)
         print(f"imagetag {imagetag}")
         
         new_file_content = getattr(self, "update_image_tag")(file_content=file_content_decoded, variable_key = "tag", image_tag= imagetag)
@@ -104,12 +104,38 @@ class CreatePRAndAddLabel:
         print(f"print old image value \n {file_content_decoded}")
         return file_content,pr_created,file_content_decoded
     
-    def extract_image_tag(self,yaml_file):
-        with open(yaml_file, 'r') as file:
-            data = yaml.safe_load(file)
-            # Assuming the image tag is under 'image' -> 'tag'
-            image_tag = data.get('image', {}).get('tag', None)
-        return image_tag
+    
+    def get_tag_from_yaml_file(file_path):
+        try:
+            # Read the content of the YAML file
+            with open(file_path, 'r') as file:
+                yaml_content = file.read()
+
+            # Split the YAML content into lines
+            lines = yaml_content.split('\n')
+
+            # Initialize variables to track the current context
+            in_image_section = False
+            tag_value = None
+
+            # Iterate through the lines
+            for line in lines:
+                # Check if the line indicates the start of the 'image' section
+                if line.strip() == 'image:':
+                    in_image_section = True
+                elif in_image_section and line.startswith('  tag:'):
+                    # Extract the tag value
+                    tag_value = line.split(':')[-1].strip()
+                    break
+
+            return tag_value
+
+        except FileNotFoundError:
+            print(f"Error: File '{file_path}' not found.")
+            return None
+        except Exception as e:
+            print(f"Error reading YAML file: {e}")
+            return None
 
 
     @staticmethod
