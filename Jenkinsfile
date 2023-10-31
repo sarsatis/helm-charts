@@ -73,23 +73,23 @@ pipeline {
             }
         }
 
-        stage('Raise PR') {
-          steps {
-             script {
-                withCredentials([usernamePassword(credentialsId: 'githubpat',
-                      usernameVariable: 'username',
-                      passwordVariable: 'password')]){
-                        encodedPassword = URLEncoder.encode("$password",'UTF-8')
-                        echo 'In Pr'
-                        container(name: 'python') {
-                        sh "printenv"
-                        sh "pip3 install -r requirements.txt"
-                        sh "python3 oop.py"
-                        }
-                    }
-                // sh "bash pr.sh"
-            }
-          }
-        }
+        // stage('Raise PR') {
+        //   steps {
+        //      script {
+        //         withCredentials([usernamePassword(credentialsId: 'githubpat',
+        //               usernameVariable: 'username',
+        //               passwordVariable: 'password')]){
+        //                 encodedPassword = URLEncoder.encode("$password",'UTF-8')
+        //                 echo 'In Pr'
+        //                 container(name: 'python') {
+        //                 sh "printenv"
+        //                 sh "pip3 install -r requirements.txt"
+        //                 sh "python3 oop.py"
+        //                 }
+        //             }
+        //         // sh "bash pr.sh"
+        //     }
+        //   }
+        // }
     }
 }
