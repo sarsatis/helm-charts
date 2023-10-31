@@ -7,9 +7,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   info:
-  - name: Trigger-Pre:
+  - name: 'Trigger-Pre:'
     value: >-
-      http://34.28.94.32:8080/
+      'http://34.28.94.32:8080/'
   project: {{ .Values.project }}
   source:
     repoURL: {{ .Values.repoUrl }}
