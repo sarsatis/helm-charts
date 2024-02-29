@@ -22,4 +22,5 @@ appKind: "microservice"
 
 gatewayName: apps-gateway
 
+virtualServiceEnabled: false
 

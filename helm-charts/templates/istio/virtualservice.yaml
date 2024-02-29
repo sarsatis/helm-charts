@@ -1,3 +1,4 @@
+{{- if .Values.virtualServiceEnabled }}
 {{- if eq (.Values.appKind | toString) "microservice" }}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -17,4 +18,5 @@ spec:
         host: {{ .Release.Name }}
         port:
           number: {{ .Values.port }}
+{{- end }}
 {{- end }}

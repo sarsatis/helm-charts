@@ -4,8 +4,8 @@ env:
 appList:
 # - solar-system
 # - priyankalearnings
-- librarymanagementsystem
-- employeemanagement
-- mysql
+# - librarymanagementsystem
+# - employeemanagement
+# - mysql
 - rtlpropagation-sb
 # - priyankapractice
