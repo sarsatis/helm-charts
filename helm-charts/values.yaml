@@ -10,7 +10,7 @@ image:
   repository: sarthaksatish/priyankapractice
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 30
+  imageTag: 30
 
 canary: "False"
 jiraId: test-123
@@ -22,4 +22,5 @@ appKind: "microservice"
 
 gatewayName: apps-gateway
 
+virtualServiceEnabled: false
 
