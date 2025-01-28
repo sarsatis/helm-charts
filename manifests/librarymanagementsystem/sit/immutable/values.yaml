@@ -10,4 +10,4 @@ image:
   repository: sarthaksatish/librarymanagementsystem
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 85eb0ca25cf95575782ba74ac10492b1298c07d9-3
+  imageTag: 2efbfd0b629726790d1b95abe869fb3d376d27fb
